@@ -38,6 +38,8 @@ pub mod system_resolver;
 #[cfg(feature = "plugins")]
 pub mod tls;
 #[cfg(feature = "plugins")]
+pub mod quic;
+#[cfg(feature = "plugins")]
 pub mod trojan;
 pub mod vmess;
 #[cfg(feature = "plugins")]

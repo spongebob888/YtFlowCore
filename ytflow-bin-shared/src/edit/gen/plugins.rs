@@ -113,6 +113,8 @@ pub enum PluginType {
     HttpProxyClient,
     #[strum(props(prefix = "tls-client"), detailed_message = "TLS client stream.")]
     TlsClient,
+    #[strum(props(prefix = "quic-client"), detailed_message = "QUIC client stream.")]
+    QuicClient,
     #[strum(
         props(prefix = "trojan-client"),
         detailed_message = "Trojan client. Note that TLS is not included. You will likely need to connect this plugin to a TLS plugin."
@@ -303,6 +305,11 @@ impl PluginType {
                     "alpn" => ["http/1.1"],
                     "sni" => "remove.for.auto.sni.detection.com",
                     "next" => name.clone() + "-redirect.tls",
+                }),
+                PluginType::QuicClient => cbor!({
+                    "alpn" => ["h3"],
+                    "sni" => "remove.for.auto.sni.detection.com",
+                    "next" => name.clone() + "-redirect.udp",
                 }),
                 PluginType::TrojanClient => cbor!({
                     "password" => Bytes::new(b"password"),

@@ -54,6 +54,9 @@ plugins = [
     "dep:nix",
     "dep:block2",
     "dep:smoltcp",
+    "dep:quinn",
+    "dep:webpki-roots",
+    "dep:rustls",
 ]
 
 [dependencies]
@@ -110,6 +113,9 @@ hyper = { git = "https://github.com/hyperium/hyper.git", branch = "0.14.x", feat
     "http1",
     "http2",
 ], optional = true }
+quinn = { version = "0.10", optional = true }
+webpki-roots = { version = "0.25", optional = true }
+rustls = { version = "0.21", optional = true, features = ["dangerous_configuration"] }
 
 # Crypto
 cipher = { version = "0.4", optional = true }
@@ -150,6 +156,7 @@ tokio = { version = "1", features = [
     "macros",
 ] }
 
+log = "0.4"
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.52", features = [
     "Foundation",
